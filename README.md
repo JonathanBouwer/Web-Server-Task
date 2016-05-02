@@ -26,6 +26,7 @@ To install flask use `sudo pip install Flask` or if you would like to use a virt
 1. Run `make` or `python src/flaskWebServer.py` to run the server
 2. Open your browser and go to the url `localhost:5000` or `127.0.0.1:5000`
 3. Navigate using interface provided
+4. Upon completion simply close the browser and send a keyboard interrupt to the terminal with ctrl-C
 
 ##Docker
 
@@ -38,5 +39,6 @@ Simply run `docker build -t simplewebserver .`, this will need some time to down
 1. Run `docker run -d -p 5000:5000 simplewebserver`
 2. Open your browser and go to the url `localhost:5000` or `127.0.0.1:5000`
 3. Navigate using interface provided
+4. Upon completion simply close the browser and run `docker stop $CONTAINERID$` where container id is the id printed to the termianl on execution of instruction 1
 
 *Running in docker will only show usage information of that specific docker container, not the entire machines usage in order to maintain docker container independance
