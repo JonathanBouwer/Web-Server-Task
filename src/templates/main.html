@@ -1,7 +1,31 @@
 {% extends "template.html" %}
 {% block content %}
 	<div>
-		<h1> Full Server Information </h1>
-		<pre> {{sInfo}} </pre>
+		<h2> Usage </h2>
+		<p> CPU Usage: {{CPU}} </p>
+		<p> Memory: {{MEM}} </p>
+		<h2> Most resource intensive apps </h2>
+		<div id = "charts" style ="height:450px;width:450px;">
+			<script src="../static/js/chart/dist/Chart.js"></script>
+			<canvas id="myChart"></canvas>
+			<script>
+				var ctx = document.getElementById("myChart");
+				document.getElementById('myChart').setAttribute('width', 100);
+				document.getElementById('myChart').setAttribute('height', 100);
+				var titles = {{l|safe}}
+				var chartData = {{d|safe}}
+				var myChart = new Chart(ctx, {
+					type : 'pie',
+					data : {
+						labels:  [titles[0],titles[1],titles[2],titles[3],titles[4],titles[5]],
+						datasets: [{
+							data: [chartData[0],chartData[1],chartData[2],chartData[3],chartData[4],chartData[5]],
+							backgroundColor: ["#98FB98","#FB9090","#FFCE56","#8770FF","#6495ED", "#808A87"],
+						}]
+					},
+				});
+			</script>
+		</div>
+		<h2> <a href="/servInfo"> Full usage info </a> </h2>
 	</div>
 {% endblock %}
