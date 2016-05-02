@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, render_template
 import subprocess
 import os
 
@@ -8,8 +8,9 @@ app = Flask(__name__)
 def stats():
 	myenv = os.environ.copy()
 	myenv["COLUMNS"] = "512"
-	s = subprocess.check_output(["top","-b", "-n", "1"], env=myenv)
-	return str(s)
+	topData = subprocess.check_output(["top","-b", "-n", "1"], env=myenv)
+	sInfo = topData
+	return render_template("main.html", sInfo = sInfo)
 
 @app.route("/")
 def index():
